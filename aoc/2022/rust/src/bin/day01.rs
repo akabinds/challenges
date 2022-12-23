@@ -33,7 +33,7 @@ impl<'a> AOCSolution<'a> for Day1 {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let inp = include_str!("../../inputs/day01.txt");
+    let inp = include_str!("../../../inputs/day01.txt");
     let parsed = Day1::parse(inp);
 
     let (p1, p2) = (Day1::part1(parsed.clone()), Day1::part2(parsed));
