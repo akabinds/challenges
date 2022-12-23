@@ -50,7 +50,7 @@ def generate_generic(
 
     try:
         AOC_DIR.mkdir()
-        (AOC_DIR / "inputs/").mkdir() 
+        (AOC_DIR / "inputs/").mkdir()
     except* FileExistsError:
         rich_print(
             "[bold red]The specified target directory already exists![/bold red]"
@@ -60,7 +60,9 @@ def generate_generic(
         rich_print("[bold red]The path specified does not exist![/bold red]")
         raise typer.Exit()
 
-    rich_print(f"[green]Successfully generated generic AOC structure for year {year}![/green]")
+    rich_print(
+        f"[green]Successfully generated generic AOC structure for year {year}![/green]"
+    )
 
 
 @cli.command()
@@ -95,7 +97,9 @@ def generate_lang(
         rich_print("[bold red]The path specified does not exist![/bold red]")
         raise typer.Exit()
 
-    rich_print(f"[green]Successfully generated basic AOC structure for {lang.capitalize()} for the {year} AOC![/green]")
+    rich_print(
+        f"[green]Successfully generated basic AOC structure for {lang.capitalize()} for the {year} AOC![/green]"
+    )
 
 
 @cli.async_command()
@@ -120,7 +124,9 @@ async def input(
     )
 
     if INPUT.exists():
-        rich_print(f"[bold red]The AOC input for year {year} and day {day} has already been fetched![/bold red]")
+        rich_print(
+            f"[bold red]The AOC input for year {year} and day {day} has already been fetched![/bold red]"
+        )
         raise typer.Exit()
 
     uri = f"https://adventofcode.com/{year}/day/{day}/input"
@@ -135,7 +141,9 @@ async def input(
             async for line in res.aiter_lines():
                 f.write(line)
 
-    rich_print(f"[green]Successfully fetched the AOC input for year {year} and day {day}![/green]")
+    rich_print(
+        f"[green]Successfully fetched the AOC input for year {year} and day {day}![/green]"
+    )
 
 
 if __name__ == "__main__":
