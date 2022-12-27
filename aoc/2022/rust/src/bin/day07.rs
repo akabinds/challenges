@@ -159,12 +159,16 @@ impl<'a> AOCSolution<'a> for Day7 {
             } else if let Some((dir_or_size, name)) = line.split_once(' ') {
                 match dir_or_size {
                     size if dir_or_size.chars().all(|c| c.is_numeric()) => {
-                        let cur_dir = fs.get_dir_mut(cur_dir_id);
+                        let mut cur_dir = fs.get_dir_mut(cur_dir_id);
                         let size = size.parse().unwrap();
                         cur_dir.add_entry(DirEntry::File { size });
                         cur_dir.size += size;
                         fs.get_dir_mut(fs.root()).size += size;
                     },
+                    "dir" => {
+                        let cur_dir = fs.get_dir_mut(cur_dir_id);
+                        cur_dir.add_entry(DirEntry::Dir(cur_dir.id));
+                    }
                     _ => {},
                 }
             }

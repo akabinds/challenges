@@ -15,6 +15,12 @@ impl<'a> AOCSolution<'a> for Day13 {
     }
 
     fn part1(parsed: Self::ParsedInput) -> Self::Part1Out {
+        for line in parsed {
+            let Some((first_packet, second_packet)) = line.split_once('\n') else {
+                panic!("Ill formatted input");
+            };
+        }
+
         todo!();
     }
 

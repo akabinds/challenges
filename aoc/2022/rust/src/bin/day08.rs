@@ -43,6 +43,20 @@ impl<'a> AOCSolution<'a> for Day8 {
                     visible += 1;
                     continue;
                 }
+
+                let cur = col;
+
+                let relative = [
+                    parsed[row_idx-1][col_idx],
+                    parsed[row_idx+1][col_idx],
+                    parsed[row_idx][col_idx-1],
+                    parsed[row_idx][col_idx+1]
+                ];
+
+                if relative.iter().any(|e| relative.iter().skip(1).any(|s| e > s)) {
+                    visible += 1;
+                    continue;
+                }
             }
         }
 
@@ -57,6 +71,8 @@ impl<'a> AOCSolution<'a> for Day8 {
 fn main() -> Result<(), Box<dyn Error>> {
     let inp = include_str!("../../../inputs/day08.txt");
     let parsed = Day8::parse(inp);
+
+    dbg!(Day8::part1(parsed.clone()));
 
     let (p1, p2) = (Day8::part1(parsed.clone()), Day8::part2(parsed));
 
